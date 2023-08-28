@@ -18,6 +18,25 @@ class Despesa {
         this.valor = valor 
     } 
 }
+class Bd {
+    constructor() {
+        let id = localStorage.getItem('id')
+        if(id === null) {
+            localStorage.setItem('id', 0)
+        }
+    }
+    getproximoId() {
+        let proximoId = localStorage.getItem('id')
+        return (+proximoId + 1);
+    }
+    gravar(d) { 
+        let id = this.getproximoId()
+        localStorage.setItem(id, JSON.stringify(d)); 
+        localStorage.setItem('id', id);
+    }
+}
+let bd = new Bd();
+
 function handleClick() { 
     let despesa = new Despesa (   
         ano.value, 
@@ -27,8 +46,6 @@ function handleClick() {
         descricao.value, 
         valor.value 
     ) 
-    gravar(despesa) 
-} 
-function gravar(d) { 
-    localStorage.setItem('despesa', JSON.stringify(d)); 
+
+    bd.gravar(despesa)
 }
