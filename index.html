@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento Pessoal</title>
+    <link rel="stylesheet" href="estilo.css">
+
+    <script src="https://kit.fontawesome.com/351abb5b13.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <header class="header-bg">
+        <div class="container header">
+            <div>
+                <i class="fa-solid fa-sack-dollar fa-2xl" style="color: #ffffff;"></i>
+            </div>
+            <div>
+                <a href="index.html">Cadastro</a>
+                <a href="consulta.html">Consulta</a>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <div>
+            <h1>Registro de nova despesa</h1>
+        </div>
+        <section class="grid-1">
+            <div>
+                <select name="ano" id="ano">
+                    <option value="">Ano</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                </select>
+            </div>
+            <div>
+                <select name="mes" id="mes">
+                    <option value="">Mês</option>
+                    <option value="1">Janeiro</option>
+                    <option value="2">Fevereiro</option>
+                    <option value="3">Março</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Maio</option>
+                    <option value="6">Junho</option>
+                    <option value="7">Julho</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+            </div>
+            <div>
+                <input type="number" placeholder="Dia" id="dia">
+            </div>
+            <div>
+                <select name="tipo" id="tipo">
+                <option value="">Tipo</option>
+                <option value="1">Alimentação</option>
+                <option value="2">Educação</option>
+                <option value="3">Lazer</option>
+                <option value="4">Saúde</option>
+                <option value="5">Transporte</option>
+                </select>
+            </div>
+        </section>
+        <section class="grid-2">
+            <div class="descricao">
+                <input type="text" placeholder="Descrição" id="descricao">
+            </div>
+            <div class="valor">
+                <input type="text" placeholder="Valor" id="valor">
+            </div>
+            <div class="botao">
+                <button class="btn" type="button">
+                    <i class="fa-solid fa-plus fa-lg" style="color: #ffffff;"></i>
+                </button>
+            </div>
+        </section> 
+    </main>  
+    <script src="app.js"></script>     
+</body>
+</html>
