@@ -145,3 +145,25 @@ h1 {
 .btn:hover {
     background: #065EE1;
 }
+.section-consulta {
+    margin-top: 60px;
+}
+.table {
+    width: 100%;
+}
+tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0px;
+}
+th, td {
+    align-items: start;
+    text-align: left;
+    padding: 5px;
+}
+th {
+    font-family: sans-serif;
+    font-size: 1rem;
+    padding-bottom: 5px;
+}

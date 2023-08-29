@@ -48,6 +48,23 @@ class Bd {
         localStorage.setItem(id, JSON.stringify(d)); 
         localStorage.setItem('id', id);
     }
+    recuperarTodosRegistros() {
+        let despesas = Array();
+
+        let id = localStorage.getItem('id');
+        for(let i = 1; i <= id; i++) {
+
+            //recupera a despesa no seu id
+            let despesa = JSON.parse(localStorage.getItem(i))
+            //verifica se alguma despesa é null e pula ela
+            if(despesa === null) {
+                continue;
+            }
+            //coloca despesa dentro do array
+            despesas.push(despesa)
+        }
+        return despesas;
+    }
 }
 let bd = new Bd();
 
@@ -82,11 +99,43 @@ function handleClick() {
         modal.classList.remove('ativo');
     })
     if(despesa.validarDados()) {
-        //bd.gravar(despesa)
+        bd.gravar(despesa)
         //success
         modalSuccess();
     }else {
         modalErro();
         //erro
     }
+}
+
+function carregaListaDespesas() {
+    let despesas = Array();
+
+    despesas = bd.recuperarTodosRegistros();
+
+    const listaDespesas = document.querySelector('#listaDespesas');
+
+    despesas.forEach((d) => {
+        //craindo linhda (tr)
+        let linha = listaDespesas.insertRow()
+        
+        //crinado as colunas (td)
+        linha.insertCell(0).innerHTML = d.dia + '/' + d.mes + '/' + d.ano
+        //ajuste de tipo
+        switch(d.tipo) {
+            case '1': d.tipo = 'Alimentação'
+                break;
+            case '2': d.tipo = 'Educação'
+                break;
+            case '3': d.tipo = 'Lazer'
+                break;
+            case '4': d.tipo = 'Saúde'
+                break;
+            case '5': d.tipo = 'Transporte'
+                break;
+        }
+        linha.insertCell(1).innerHTML = d.tipo
+        linha.insertCell(2).innerHTML = d.descricao
+        linha.insertCell(3).innerHTML = d.valor
+    })
 }
