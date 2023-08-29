@@ -6,6 +6,11 @@ const descricao = document.querySelector('#descricao');
 const valor = document.querySelector('#valor'); 
 const btn = document.querySelector('.btn'); 
 
+const modal = document.querySelector('.modal-container');
+const btnModal = document.querySelector('#btn-modal');
+const h1modal = document.querySelector('.modal-titulo');
+const pmodal = document.querySelector('.modal-paragrafo');
+
 btn.addEventListener('click', handleClick) 
 
 class Despesa { 
@@ -17,6 +22,15 @@ class Despesa {
         this.descricao = descricao,
         this.valor = valor 
     } 
+
+    validarDados() {
+        for (let i in this) {
+            if(this[i] == undefined || this[i] == '' || this[i] == null) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 class Bd {
     constructor() {
@@ -37,6 +51,23 @@ class Bd {
 }
 let bd = new Bd();
 
+function modalSuccess() {
+    modal.classList.add('ativo');
+    h1modal.innerText = 'Registro inserido com sucesso'
+    h1modal.style.color = 'green'
+    pmodal.innerText = 'Despesa foi cadastrada com sucesso!'
+    btnModal.style.background = 'green'
+    btnModal.innerText = 'Voltar'
+}
+function modalErro() {
+    modal.classList.add('ativo');
+    h1modal.innerText = 'Erro na gravação'
+    h1modal.style.color = 'red'
+    pmodal.innerText = 'Existem campos obrigatórios que não foram preenchidos'
+    btnModal.style.background = '#DC3545'
+    btnModal.innerText = 'Voltar e corrigir'
+}
+
 function handleClick() { 
     let despesa = new Despesa (   
         ano.value, 
@@ -46,6 +77,16 @@ function handleClick() {
         descricao.value, 
         valor.value 
     ) 
-
-    bd.gravar(despesa)
+    
+    btnModal.addEventListener('click', () => {
+        modal.classList.remove('ativo');
+    })
+    if(despesa.validarDados()) {
+        //bd.gravar(despesa)
+        //success
+        modalSuccess();
+    }else {
+        modalErro();
+        //erro
+    }
 }
