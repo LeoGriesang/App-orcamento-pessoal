@@ -194,7 +194,6 @@ function carregaListaDespesas(despesas = Array(), filtro = false) {
             bd.remover(idlimpo)
             window.location.reload();
         }
-        console.log(d)
     })
 }
 

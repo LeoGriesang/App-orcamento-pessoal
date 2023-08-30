@@ -91,6 +91,7 @@ body {
 }
 .container {
     margin: 0 auto;
+    padding: 30px 15px;
     max-width: 1000px;
 }
 .grid-1 {
@@ -194,4 +195,33 @@ th {
 }
 .botao-e:hover {
     background: #b82533;
+}
+
+@media (max-width: 700px) {
+    .grid-1 {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .tipo {
+        grid-column: 1 / 4;
+    }
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+}
+@media (max-width: 500px) {
+    tr {
+        grid-template-columns: 5fr 6fr 7fr 5fr 1fr;
+    }
+    th, td {
+        align-items: center;
+        text-align: center;
+    }
+    .botao-e {
+        padding: 4px 6px;
+        right: 0px;
+        top: 2px;
+    }
 }
