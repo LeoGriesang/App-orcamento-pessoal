@@ -65,6 +65,36 @@ class Bd {
         }
         return despesas;
     }
+    pesquisar(despesa) {
+        let despesasFiltradas = Array()
+
+        despesasFiltradas = this.recuperarTodosRegistros();
+        //ano
+        if(despesa.ano != '') {
+            despesasFiltradas = despesasFiltradas.filter((d) => d.ano == despesa.ano) 
+        }
+        //mes
+        if(despesa.mes != '') {
+            despesasFiltradas = despesasFiltradas.filter((d) => d.mes == despesa.mes) 
+        }
+        //dia
+        if(despesa.dia != '') {
+            despesasFiltradas = despesasFiltradas.filter((d) => d.dia == despesa.dia) 
+        }
+        //tipo
+        if(despesa.tipo != '') {
+            despesasFiltradas = despesasFiltradas.filter((d) => d.tipo == despesa.tipo) 
+        }
+        //descricao
+        if(despesa.descricao != '') {
+            despesasFiltradas = despesasFiltradas.filter((d) => d.descricao == despesa.descricao) 
+        }
+        //valor
+        if(despesa.valor != '') {
+            despesasFiltradas = despesasFiltradas.filter((d) => d.valor == despesa.valor) 
+        }
+        return despesasFiltradas;
+    }
 }
 let bd = new Bd();
 
@@ -75,6 +105,13 @@ function modalSuccess() {
     pmodal.innerText = 'Despesa foi cadastrada com sucesso!'
     btnModal.style.background = 'green'
     btnModal.innerText = 'Voltar'
+
+    dia.value = '';
+    mes.value = '';
+    ano.value = '';
+    tipo.value = '';
+    descricao.value = '';
+    valor.value = '';
 }
 function modalErro() {
     modal.classList.add('ativo');
@@ -99,7 +136,7 @@ function handleClick() {
         modal.classList.remove('ativo');
     })
     if(despesa.validarDados()) {
-        bd.gravar(despesa)
+       // bd.gravar(despesa)
         //success
         modalSuccess();
     }else {
@@ -114,6 +151,47 @@ function carregaListaDespesas() {
     despesas = bd.recuperarTodosRegistros();
 
     const listaDespesas = document.querySelector('#listaDespesas');
+
+    despesas.forEach((d) => {
+        //craindo linhda (tr)
+        let linha = listaDespesas.insertRow()
+        
+        //crinado as colunas (td)
+        linha.insertCell(0).innerHTML = d.dia + '/' + d.mes + '/' + d.ano
+        //ajuste de tipo
+        switch(d.tipo) {
+            case '1': d.tipo = 'Alimentação'
+                break;
+            case '2': d.tipo = 'Educação'
+                break;
+            case '3': d.tipo = 'Lazer'
+                break;
+            case '4': d.tipo = 'Saúde'
+                break;
+            case '5': d.tipo = 'Transporte'
+                break;
+        }
+        linha.insertCell(1).innerHTML = d.tipo
+        linha.insertCell(2).innerHTML = d.descricao
+        linha.insertCell(3).innerHTML = d.valor
+    })
+}
+
+function pesquisarDespesa() {
+    //pega formulario e cria nova despesa passando para o metodo bd.pesquisar
+    let valordia = dia.value;
+    let valormes = mes.value;
+    let valorano = ano.value;
+    let valortipo = tipo.value;
+    let valordescricao = descricao.value;
+    let valorvalue = valor.value;
+
+    let despesa = new Despesa(valorano, valormes, valordia, valortipo, valordescricao, valorvalue)
+
+    let despesas = bd.pesquisar(despesa)
+
+    const listaDespesas = document.querySelector('#listaDespesas');
+    listaDespesas.innerHTML = '';
 
     despesas.forEach((d) => {
         //craindo linhda (tr)

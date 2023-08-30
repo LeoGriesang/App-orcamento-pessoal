@@ -145,6 +145,20 @@ h1 {
 .btn:hover {
     background: #065EE1;
 }
+.btn-pesquisa {
+    padding: 10px 12px;
+    box-sizing: border-box;
+    background: #0D6EFD;
+    border: 1px solid #3C60FC;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-pesquisa:hover {
+    background: #065EE1;
+}
+[data-botao="pesquisa"] {
+    display: none;
+}
 .section-consulta {
     margin-top: 60px;
 }
