@@ -196,7 +196,17 @@ th {
 .botao-e:hover {
     background: #b82533;
 }
-
+.total {
+    margin-top: 30px;
+    max-width: max-content;
+    padding: 10px;
+    border-radius: 5px;
+    background: #0D6EFD;
+}
+.total span{
+    font-family: sans-serif;
+    color: #ffffff;
+}
 @media (max-width: 700px) {
     .grid-1 {
         grid-template-columns: 1fr 1fr 1fr;
@@ -223,5 +233,8 @@ th {
         padding: 4px 6px;
         right: 0px;
         top: 2px;
+    }
+    .total span{
+        font-size: 0.875rem;
     }
 }

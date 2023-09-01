@@ -99,6 +99,15 @@ class Bd {
     remover(id) {
         localStorage.removeItem(id)
     }
+    somarValores() {
+        let despesas = this.recuperarTodosRegistros();
+        let total = 0;
+        despesas.forEach((item) => {
+            total += Number(item.valor)
+        })
+        const spanDespesa = document.querySelector('#totalDespesa')
+        spanDespesa.innerHTML = 'R$ ' + total
+    }
 }
 let bd = new Bd();
 
@@ -195,6 +204,7 @@ function carregaListaDespesas(despesas = Array(), filtro = false) {
             window.location.reload();
         }
     })
+    bd.somarValores();
 }
 
 function pesquisarDespesa() {
